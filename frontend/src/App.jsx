@@ -1,8 +1,11 @@
 import React from 'react'
+import NavigationBar from './assets/components/Navigation/NavigationBar'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+        <NavigationBar />
+    </div>
   )
 }
 
