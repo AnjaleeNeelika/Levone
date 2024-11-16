@@ -1,8 +1,11 @@
 import React from 'react'
 import SectionHeading from './SectionHeading/SectionHeading'
 import Card from '../Card/Card'
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 import Skirt from '../../images/white-skirt.jpg'
 import YellowSweater from '../../images/young-teen-woman-sunglasses-hat-holding-shopping-bags-her-hands-feeling-so-happiness-isolated-green-wall.jpg'
+
 
 const items = [{
     title: 'Skirt',
@@ -24,14 +27,35 @@ const items = [{
     imagePath: YellowSweater,
 }]
 
+
 const NewArrivals = () => {
+    const responsive = {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 1024 },
+          items: 5
+        },
+        desktop: {
+          breakpoint: { max: 1024, min: 800 },
+          items: 4
+        },
+        tablet: {
+          breakpoint: { max: 800, min: 464 },
+          items: 2
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 1
+        }
+    };
+
+
     return (
         <div className='my-20 mx-10'>
             <SectionHeading title={'New Arrivals'} />
-            <div className='flex flex-row px-20 gap-36 w-fit mt-10'>
+            <Carousel responsive={responsive} className='pl-20'>
                 {items && items?.map((item, index) => <Card key={item?.title + index} title={item.title} imagePath={item.imagePath} />)}
-            </div>
-            
+            </Carousel>            
         </div>
     )
 }
