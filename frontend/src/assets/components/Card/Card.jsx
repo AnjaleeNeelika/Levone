@@ -1,11 +1,10 @@
 import React from 'react'
-import Skirt from '../../images/white-skirt.jpg'
 
-const Card = () => {
+const Card = ({imagePath, title}) => {
     return (
-        <div className='flex flex-col p-8 bg-white border w-[260px] h-[400px]'>
-            <img src={Skirt} alt="Skirt" className='max-w-[240px] max-h-[260px] bg-cover bg-center border rounded' />
-            <p className='text-[16px] font-semibold mt-2'>Skirt</p>
+        <div className='flex flex-col p-8 bg-white border rounded shadow hover:scale-105 cursor-pointer'>
+            <img src={imagePath} alt="Skirt" className='max-w-[240px] max-h-[260px] min-w-[240px] min-h-[260px] bg-cover border rounded' />
+            <p className='text-[16px] font-semibold mt-2'>{title}</p>
         </div>
     )
 }
