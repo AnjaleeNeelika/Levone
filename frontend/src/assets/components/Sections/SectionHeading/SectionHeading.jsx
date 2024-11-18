@@ -10,12 +10,12 @@ const SectionHeading = ({title}) => {
     )
 }
 
-SectionHeading.defaultProps = {
+// SectionHeading.defaultProps = {
 
-}
+// }
 
-SectionHeading.propTypes = {
-    title:String
-}
+// SectionHeading.propTypes = {
+//     title:String
+// }
 
 export default SectionHeading

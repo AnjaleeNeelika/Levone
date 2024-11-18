@@ -60,11 +60,11 @@ const NewArrivals = () => {
 
 
     return (
-        <div className='my-20 mx-10'>
+        <div className='m-10'>
             <SectionHeading title={'New Arrivals'} />
             <Carousel 
                 responsive={responsive} 
-                className='mx-10 w-full'
+                className='w-full py-3 px-8 mx-5'
                 itemClass='react-slider-custom-item'
             >
                 {items && items?.map((item, index) => <Card key={item?.title + index} title={item.title} imagePath={item.imagePath} />)}
