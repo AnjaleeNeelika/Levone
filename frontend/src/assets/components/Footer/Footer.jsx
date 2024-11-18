@@ -1,8 +1,7 @@
 import React from 'react'
-import { FaFacebookSquare, FaTiktok } from 'react-icons/fa'
-import { IoLogoFacebook, IoLogoInstagram, IoLogoTwitter, IoLogoYoutube } from 'react-icons/io'
-import { PiTiktokLogoThin } from 'react-icons/pi'
-import { RiInstagramFill, RiTiktokFill, RiTwitterFill, RiTwitterXFill } from 'react-icons/ri'
+import { FaFacebookSquare } from 'react-icons/fa'
+import { IoLogoYoutube } from 'react-icons/io'
+import { RiInstagramFill, RiTiktokFill, RiTwitterXFill } from 'react-icons/ri'
 
 const Footer = ({content}) => {
     return (
