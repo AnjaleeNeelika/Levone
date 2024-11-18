@@ -111,9 +111,9 @@
             },
             {
                 "title": "Location",
-                "description": ""
+                "description": "Location Country"
             }
         ],
-        "copyright": "Copyright 2024 Levone"
+        "copyright": "Copyright © 2024 Levone"
     }
 }
