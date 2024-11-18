@@ -4,6 +4,7 @@ import HeroSection from './assets/components/HeroSection/HeroSection'
 import NewArrivals from './assets/components/Sections/NewArrivals'
 import Category from './assets/components/Sections/Categories/Category'
 import content from './data/content.json'
+import Footer from './assets/components/Footer/Footer'
 
 const Shop = () => {
   return (
@@ -11,7 +12,10 @@ const Shop = () => {
         <NavigationBar />
         <HeroSection />
         <NewArrivals />
-        <Category title={content?.categories[0]?.title} data={content?.categories[0]?.data} />
+        {content?.categories && content?.categories?.map((item, index) =>
+            <Category key={item?.title + index} {...item}  />
+        )}
+        <Footer content={content?.footer} />
     </div>
   )
 }

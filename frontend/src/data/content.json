@@ -2,8 +2,118 @@
     "categories": [
         {
             "title": "Categories for Women",
-            "description": "Explore Now!",
-            "image": "./images/category-women-hoodie.jpg"
+            "data": [
+                {
+                    "title": "Hoodies & Sweatshirts",
+                    "description": "Explore Now!",
+                    "image": "./images/pink-women-hoodie.jpeg"
+                },
+                {
+                    "title": "Sarees",
+                    "description": "Explore Now!",
+                    "image": "./images/valentina-sarees-for-wedding-1.jpg"
+                },
+                {
+                    "title": "Office Wears",
+                    "description": "Explore Now!",
+                    "image": "./images/blue-office-blouse.jpg"
+                }
+            ]
+        },
+        {
+            "title": "Categories for Men",
+            "data": [
+                {
+                    "title": "Shirts",
+                    "description": "Explore Now!",
+                    "image": "./images/dark-green-long-sleeves-shirt.jpg"
+                },
+                {
+                    "title": "T-Shirts",
+                    "description": "Explore Now!",
+                    "image": "./images/gray-short-sleeve-tshirt.jpg"
+                }    
+                ,
+                {
+                    "title": "Trousers",
+                    "description": "Explore Now!",
+                    "image": "./images/gray-office-trouser.jpg"
+                }             
+            ]
+        },
+        {
+            "title": "Categories for Kids",
+            "data": [
+                {
+                    "title": "Froks",
+                    "description": "Explore Now!",
+                    "image": "./images/yellow-pollack-green-frock.png"
+                }           
+            ]
         }
-    ]
+    ],
+    "footer": {
+        "items": [
+            {
+                "title": "Need Help",
+                "list": [
+                    {
+                        "label": "Contact Us",
+                        "path": "/contact-us"
+                    },
+                    {
+                        "label": "Track Order",
+                        "path": "/track-order"
+                    },
+                    {
+                        "label": "Returns & Refunds",
+                        "path": "/refunds"
+                    },
+                    {
+                        "label": "FAQs",
+                        "path": "/faq"
+                    },
+                    {
+                        "label": "Career",
+                        "path": "/career"
+                    }
+                ]
+            },
+            {
+                "title": "Company",
+                "list": [
+                    {
+                        "label": "About Us",
+                        "path": "/about-us"
+                    },
+                    {
+                        "label": "Media",
+                        "path": "/media"
+                    }
+                ]
+            },
+            {
+                "title": "More Info",
+                "list": [
+                    {
+                        "label": "Terms & Conditions",
+                        "path": "/terms-and-conditions"
+                    },
+                    {
+                        "label": "Privacy Policy",
+                        "path": "/policies"
+                    },
+                    {
+                        "label": "Shipping Policy",
+                        "path": "/policies"
+                    }
+                ]
+            },
+            {
+                "title": "Location",
+                "description": ""
+            }
+        ],
+        "copyright": "Copyright 2024 Levone"
+    }
 }
