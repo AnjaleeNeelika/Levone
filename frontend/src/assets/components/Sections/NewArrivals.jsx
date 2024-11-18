@@ -5,27 +5,27 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Skirt from '../../images/white-skirt.jpg'
 import YellowSweater from '../../images/young-teen-woman-sunglasses-hat-holding-shopping-bags-her-hands-feeling-so-happiness-isolated-green-wall.jpg'
+import Blouses from '../../images/blouses-1.jpg'
+import MaroonShirt from '../../images/Signature-maroon-log-sleeved-shirt.jpg'
+import BrownSaree from '../../images/brown-indian-saree.jpg'
 import './NewArrivals.css'
 
 
 const items = [{
-    title: 'Skirt',
+    title: 'Skirts',
     imagePath: Skirt,
 }, {
-    title: 'Yellow Turtleneck Sweater',
+    title: 'Hoodies and Sweatshirts',
     imagePath: YellowSweater,
 }, {
-    title: 'Skirt',
-    imagePath: Skirt,
+    title: 'Blouses',
+    imagePath: Blouses,
 }, {
-    title: 'Yellow Turtleneck Sweater',
-    imagePath: YellowSweater,
+    title: 'Shirts',
+    imagePath: MaroonShirt,
 }, {
-    title: 'Skirt',
-    imagePath: Skirt,
-}, {
-    title: 'Yellow Turtleneck Sweater',
-    imagePath: YellowSweater,
+    title: 'Sarees',
+    imagePath: BrownSaree,
 }]
 
 
