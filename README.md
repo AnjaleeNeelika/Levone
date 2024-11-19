@@ -1,2 +1,2 @@
 # Levone
-An online clothing store
+An online platform for purchasing clothes
