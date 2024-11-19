@@ -4,26 +4,32 @@ import './index.css'
 import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom'
 import Shop from './Shop';
 import ProductList from './assets/pages/ProductListPage/ProductList';
-import NavigationBar from './assets/components/Navigation/NavigationBar';
+import Wrapper from './assets/pages/Wrapper';
 // import { router } from './routes.js'
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Shop />,
+        element: <Wrapper />,
+        children: [
+            {
+                path: "/",
+                element: <Shop />
+            },
+            {
+                path: "/women",
+                element: <ProductList />,
+            },
+        ]
     },
-    {
-        path: "/women",
-        element: <ProductList />,
-    }
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router}>
         {/* <NavigationBar /> */}
-        <Shop />
+        <Wrapper />
     </RouterProvider>
   </StrictMode>,
 )

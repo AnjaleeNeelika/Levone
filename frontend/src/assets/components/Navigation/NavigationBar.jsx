@@ -14,7 +14,7 @@ const NavigationBar = () => {
     };
 
     return (
-        <nav className='flex items-center py-6 px-16 justify-between gap-40'>
+        <nav className='flex items-center py-6 px-16 justify-between gap-40 shadow-md'>
             <div className='flex items-center gap-6'>
                 {/* Logo */}
                 <a href='/' className='text-3xl text-black gap-8 font-bold'>Levone</a>
