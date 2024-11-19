@@ -2,6 +2,8 @@ import React from 'react'
 import { FaFacebookSquare } from 'react-icons/fa'
 import { IoLogoYoutube } from 'react-icons/io'
 import { RiInstagramFill, RiTiktokFill, RiTwitterXFill } from 'react-icons/ri'
+import { NavLink } from 'react-router-dom'
+import Logo from '../../logo/transparent_bg.png'
 
 const Footer = ({content}) => {
     return (
@@ -12,9 +14,13 @@ const Footer = ({content}) => {
                         <div className='flex flex-col' key={index}>
                             <p className='text-2xl pb-6'>{item?.title}</p>
                             {item?.list && item?.list?.map((listItem, index) => 
-                                <a key={index} href={listItem?.path} className='flex flex-col py-1'>
+                                <NavLink 
+                                    key={index} 
+                                    href={listItem?.path} 
+                                    className='w-fit flex flex-col my-1 hover:border-b-2 hover:border-b-white'
+                                >
                                     {listItem?.label}
-                                </a>
+                                </NavLink>
                             )}
                             {item?.description && <p>{item?.description}</p>}
                         </div>
@@ -37,6 +43,9 @@ const Footer = ({content}) => {
                 <a href="/tiktok-levone">
                     <RiTiktokFill />
                 </a>
+            </div>
+            <div className='w-fit mx-auto mb-3'>
+                <img src={Logo} className='h-14' />
             </div>
             <p className='text-sm text-white text-center content-center'>
                 {content?.copyright}
