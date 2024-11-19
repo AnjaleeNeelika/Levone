@@ -9,10 +9,10 @@ const Footer = ({content}) => {
             <div className='flex justify-between gap-10'>
                 {content?.items && content?.items?.map((item, index) => {
                     return (
-                        <div className='flex flex-col'>
+                        <div className='flex flex-col' key={index}>
                             <p className='text-2xl pb-6'>{item?.title}</p>
                             {item?.list && item?.list?.map((listItem, index) => 
-                                <a href={listItem?.path} className='flex flex-col py-1'>
+                                <a key={index} href={listItem?.path} className='flex flex-col py-1'>
                                     {listItem?.label}
                                 </a>
                             )}
