@@ -16,19 +16,19 @@ const Category = ({title, data}) => {
           breakpoint: { max: 1510, min: 1240 },
           items: 4
         },
-        tablet: {
+        tablet1: {
           breakpoint: { max: 1240, min: 940 },
           items: 3
         },
-        tablet: {
+        tablet2: {
             breakpoint: { max: 940, min: 640 },
             items: 2
           },
-        mobile: {
+        mobile1: {
           breakpoint: { max: 640, min: 520 },
           items: 1.5
         },
-        tablet: {
+        mobile2: {
             breakpoint: { max: 520, min: 0 },
             items: 1
         },
@@ -44,7 +44,7 @@ const Category = ({title, data}) => {
             >
                 {data && data?.map((item, index) => {
                     return (
-                        <Card title={item?.title} description={item?.description} imagePath={item?.image} actionArrow={true} height={'300px'} width={'240px'} />          
+                        <Card key={index} title={item?.title} description={item?.description} imagePath={item?.image} actionArrow={true} width="240px" height="300px" />          
                     )
                 })}
             </Carousel>  
