@@ -115,5 +115,78 @@
             }
         ],
         "copyright": "Copyright © 2024 Levone"
-    }
+    },
+    "filter_categories": [
+        {
+            "id": 1,
+            "name": "Men",
+            "code": "MEN",
+            "types": [
+                {
+                    "id": 1,
+                    "name": "Trousers",
+                    "description": "Men's Jeans"
+                },
+                {
+                    "id": 2,
+                    "name": "Jeans",
+                    "description": "Men's Cardigans"
+                },
+                {
+                    "id": 3,
+                    "name": "Shirts",
+                    "description": "Men's Shirts"
+                },
+                {
+                    "id": 4,
+                    "name": "T-Shirts",
+                    "description": "Men's T-Shirts"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Women",
+            "code": "WOMEN",
+            "types": [
+                {
+                    "id": 5,
+                    "name": "Hoodies & Sweatshirts",
+                    "description": "Women's Hoodies & Sweatshirts"
+                },
+                {
+                    "id": 6,
+                    "name": "T-Shirts",
+                    "description": "Women's T-Shirts"
+                },
+                {
+                    "id": 7,
+                    "name": "Blouses",
+                    "description": "Women's Blouses"
+                },
+                {
+                    "id": 8,
+                    "name": "Sarees",
+                    "description": "Women's Sarees"
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "name": "Kids",
+            "code": "KIDS",
+            "types": [
+                {
+                    "id": 9,
+                    "name": "Frocks",
+                    "description": "Kids' Frocks"
+                },
+                {
+                    "id": 10,
+                    "name": "T-Shirts",
+                    "description": "Kids' T-Shirts"
+                }
+            ]
+        }
+    ]
 }
