@@ -25,7 +25,7 @@ const ColorsFilter = ({colors}) => {
         } else {
             setAppliedColors([...appliedColors, item]);
         }
-    }, [appliedColors, setAppliedColors])
+    }, [appliedColors, setAppliedColors]);
 
     return (
         <div className='flex flex-col mb-4'>
