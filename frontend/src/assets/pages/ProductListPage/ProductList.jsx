@@ -1,24 +1,52 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { HiOutlineAdjustments } from 'react-icons/hi'
+import content from '../../../data/content.json'
+import Categories from '../../components/Filters/Categories';
+import PriceFilter from '../../components/Filters/PriceFilter';
+import ColorsFilter from '../../components/Filters/ColorsFilter';
 
-const ProductList = () => {
+
+const categories = content?.filter_categories;
+
+const ProductList = ({categoryType}) => {
+
+    const categoryContent = useMemo(() => {
+        return categories?.find((category) => category.code === categoryType);
+    }, [categoryType]);
+
     return (
         <div>
             <div className='flex'>
-                <div className='w-[20%] p-8 m-12 border rounded-lg '>
+                <div className='w-[20%] p-8 my-12 ml-12 border rounded-lg shadow-md'>
                     {/* Filters */}
                     <div className='flex justify-between pb-2 border-b border-b-gray-300'>
                         <p className='text-xl text-gray-500'>Filters</p>
                         <HiOutlineAdjustments className='text-2xl text-gray-400' />
                     </div>
                     <div>
-                        <p className='text-black mt-5 uppercase'>Categories</p>
+                        {/* Product Types */}
+                        <p className='text-black font-semibold mt-5 uppercase'>Categories</p>
+                        <Categories types={categoryContent?.types} />
+                        <hr className='mt-5'></hr>
+                    </div>
+                    <div>
+                        {/* Price */}
+                        <PriceFilter />
+                        <hr className='mt-7'></hr>
+                    </div>
+                    <div>
+                        {/* Colors */}
+                        <ColorsFilter colors={categoryContent?.meta_data?.colors} />
+                        <hr className='mt-5'></hr>
+                    </div>
+                    <div>
+                        {/* Sizes */}
                     </div>
                 </div>
 
-                <div className='p-10 bg-slate-200'>
+                <div className='p-14 w-full'>
                     {/* Products */}
-                    <p>Products</p>
+                    <p className='text-2xl'>{categoryContent?.description}</p>
                 </div>
             </div>
         </div>
