@@ -121,72 +121,121 @@
             "id": 1,
             "name": "Men",
             "code": "MEN",
+            "description": "Men's Clothing",
             "types": [
                 {
-                    "id": 1,
+                    "type_id": 1,
                     "name": "Trousers",
+                    "code": "TROUSERS",
                     "description": "Men's Jeans"
                 },
                 {
-                    "id": 2,
+                    "type_id": 2,
                     "name": "Jeans",
+                    "code": "JEANS",
                     "description": "Men's Cardigans"
                 },
                 {
-                    "id": 3,
+                    "type_id": 3,
                     "name": "Shirts",
+                    "code": "SHIRTS",
                     "description": "Men's Shirts"
                 },
                 {
-                    "id": 4,
+                    "type_id": 4,
                     "name": "T-Shirts",
+                    "code": "T-SHIRTS",
                     "description": "Men's T-Shirts"
                 }
-            ]
+            ],
+            "meta_data": {
+                "colors": ["Black", "White", "Purple", "Gray", "Pink", "Yellow", "Green", "Blue", "Red", "Orange", "Navy"],
+                "sizes": ["S", "M", "L", "XL", "XXL"]
+            }
         },
         {
             "id": 2,
             "name": "Women",
             "code": "WOMEN",
+            "description": "Women's Clothing",
             "types": [
                 {
-                    "id": 5,
+                    "type_id": 5,
                     "name": "Hoodies & Sweatshirts",
+                    "code": "HOODIES&SWEATSHIRTS",
                     "description": "Women's Hoodies & Sweatshirts"
                 },
                 {
-                    "id": 6,
+                    "type_id": 6,
                     "name": "T-Shirts",
+                    "code": "T-SHIRTS",
                     "description": "Women's T-Shirts"
                 },
                 {
-                    "id": 7,
+                    "type_id": 7,
                     "name": "Blouses",
+                    "code": "BLOUSES",
                     "description": "Women's Blouses"
                 },
                 {
-                    "id": 8,
+                    "type_id": 8,
                     "name": "Sarees",
+                    "code": "SAREES",
+                    "description": "Women's Sarees"
+                },
+                {
+                    "type_id": 9,
+                    "name": "Crop Top",
+                    "code": "CROPTOP",
+                    "description": "Women's Sarees"
+                },
+                {
+                    "type_id": 10,
+                    "name": "Shorts",
+                    "code": "SHORTS",
+                    "description": "Women's Sarees"
+                },
+                {
+                    "type_id": 11,
+                    "name": "Tops",
+                    "code": "TOPS",
                     "description": "Women's Sarees"
                 }
-            ]
+            ],
+            "meta_data": {
+                "colors": ["Black", "White", "Purple", "Gray", "Pink", "Yellow", "Green", "Blue", "Red", "Orange", "Navy"],
+                "sizes": ["S", "M", "L", "XL", "XXL"]
+            }
         },
         {
             "id": 1,
             "name": "Kids",
             "code": "KIDS",
+            "description": "Kids' Clothing",
             "types": [
                 {
-                    "id": 9,
+                    "type_id": 12,
                     "name": "Frocks",
+                    "code": "FROCKS",
                     "description": "Kids' Frocks"
                 },
                 {
-                    "id": 10,
+                    "type_id": 13,
                     "name": "T-Shirts",
+                    "code": "T-SHIRTS",
                     "description": "Kids' T-Shirts"
+                },
+                {
+                    "type_id": 14,
+                    "name": "Shorts",
+                    "code": "SHORTS",
+                    "description": "Kids' Shorts"
                 }
-            ]
+            ],
+            "meta_data": {
+                "colors": ["Black", "White", "Purple", "Gray", "Pink", "Yellow", "Green", "Blue", "Red", "Orange", "Navy"],
+                "sizes": ["S", "M", "L", "XL", "XXL"]
+            }
         }
     ]
 }

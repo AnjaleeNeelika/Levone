@@ -19,7 +19,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "/women",
-                element: <ProductList />,
+                element: <ProductList categoryType={'WOMEN'} />,
+            },
+            {
+                path: "/men",
+                element: <ProductList categoryType={'MEN'} />,
+            },
+            {
+                path: "/kids",
+                element: <ProductList categoryType={'KIDS'} />,
             },
         ]
     },
