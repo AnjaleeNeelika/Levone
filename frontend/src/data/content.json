@@ -237,5 +237,22 @@
                 "sizes": ["S", "M", "L", "XL", "XXL"]
             }
         }
+    ],
+    "products": [
+        {
+            "id": 1,
+            "title": "Pink Hoodie",
+            "description": "A comfortable pink hoodie for women",
+            "category_id": 2,
+            "type_id": 5,
+            "brand": "Nike",
+            "price": 2450.00,
+            "size": ["S", "M", "L"],
+            "color": ["Pink"],
+            "discount": 20,
+            "thumbnail": "./images/pink-women-hoodie.jpeg",
+            "images": ["pink-women-hoodie1.jpeg", "pink-women-hoodie2.jpeg"],
+            "rating": 4.8
+        }
     ]
 }
