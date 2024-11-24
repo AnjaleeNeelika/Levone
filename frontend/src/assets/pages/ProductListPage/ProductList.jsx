@@ -5,6 +5,7 @@ import Categories from '../../components/Filters/Categories';
 import PriceFilter from '../../components/Filters/PriceFilter';
 import ColorsFilter from '../../components/Filters/ColorsFilter';
 import SizeFilter from '../../components/Filters/SizeFilter';
+import ProductCard from './ProductCard';
 
 
 const categories = content?.filter_categories;
@@ -14,6 +15,10 @@ const ProductList = ({categoryType}) => {
     const categoryContent = useMemo(() => {
         return categories?.find((category) => category.code === categoryType);
     }, [categoryType]);
+
+    const productListItems = useMemo(() => {
+        return content?.products?.filter((product) => product?.category_id === categoryContent?.id);
+    }, [categoryContent]);    
 
     return (
         <div>
@@ -49,6 +54,13 @@ const ProductList = ({categoryType}) => {
                 <div className='p-14 w-full'>
                     {/* Products */}
                     <p className='text-2xl'>{categoryContent?.description}</p>
+                    <div className='p-5 flex flex-wrap gap-16'>
+                        {productListItems?.map((item, index) => (
+                            // console.log(item)
+                            <ProductCard key={index} {...item} />
+                        ))}                        
+                    </div>
+                    
                 </div>
             </div>
         </div>
