@@ -251,7 +251,7 @@
             "color": ["Pink"],
             "discount": 20,
             "thumbnail": "./images/pink-women-hoodie.jpeg",
-            "images": ["pink-women-hoodie1.jpeg", "pink-women-hoodie2.jpeg"],
+            "images": ["./images/pink-women-hoodie.jpeg", "./images/pink-women-hoodie.jpeg"],
             "rating": 4.8
         },
         {
