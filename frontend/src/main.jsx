@@ -5,6 +5,8 @@ import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } fro
 import Shop from './Shop';
 import ProductList from './assets/pages/ProductListPage/ProductList';
 import Wrapper from './assets/pages/Wrapper';
+import ProductDetails from './assets/pages/ProductDetailPage/ProductDetails';
+import loadProductById from './routes/products';
 // import { router } from './routes.js'
 
 
@@ -28,6 +30,11 @@ const router = createBrowserRouter([
             {
                 path: "/kids",
                 element: <ProductList categoryType={'KIDS'} />,
+            },
+            {
+                path: "/product/:productId",
+                loader: loadProductById,
+                element: <ProductDetails />
             },
         ]
     },
