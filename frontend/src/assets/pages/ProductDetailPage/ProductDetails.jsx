@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 import { useLoaderData, useParams } from 'react-router-dom'
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb'
+
+const BreadcrumbLinks = [
+    {title: 'Shop', path: '/'},{title: 'Women', path: '/women'}, {title: 'Hoodies and Sweatshirts', path: '/hoodies-and-swetshirts'}
+];
 
 const ProductDetails = () => {
     const { product } = useLoaderData();
@@ -31,6 +36,7 @@ const ProductDetails = () => {
             </div>
             <div className='w-[60%]'>
                 {/* Product Description */}
+                <Breadcrumb links={BreadcrumbLinks} />
             </div>
         </div>
     )
