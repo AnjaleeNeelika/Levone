@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 
-const SizeFilter = ({sizes}) => {
+const SizeFilter = ({sizes, hideTitle}) => {
 
     const [appliedSize, setAppliedSize] = useState([]);
 
@@ -14,9 +14,9 @@ const SizeFilter = ({sizes}) => {
 
     return (
         <div className='flex flex-col mb-4'>
-            <p className='text-[16px] uppercase text-black mt-5 font-semibold'>Size</p>
+            {!hideTitle && <p className='text-[16px] uppercase text-black mt-5 font-semibold'>Size</p>}
 
-            <div className="flex flex-wrap px-2 mt-2 gap-3 justify-center">
+            <div className="flex flex-wrap px-2 mt-2 gap-3">
                 {sizes?.map(item => {
                     return (
                         <div className="flex gap-2">
