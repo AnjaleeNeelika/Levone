@@ -7,7 +7,7 @@ const Breadcrumb = ({ links }) => {
         <nav className='flex' aria-label='Breadcrumb'>
             <ol className='inlin-fle ic space-x-1 md:space-x-2 rtl:space-x-reverse'>
                 {links?.map((link, index) => (
-                    <li className='inline-flex items-center text-lg font-medium text-gray-500'>
+                    <li key={index} className='inline-flex items-center text-lg font-medium text-gray-500'>
                         <Link to={link?.path} className='inline-flex items-center mr-2'>
                             {link?.title}
                         </Link>
