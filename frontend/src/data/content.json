@@ -284,7 +284,7 @@
             "color": ["Green"],
             "discount": 20,
             "thumbnail": "./images/dark-green-long-sleeves-shirt.jpg",
-            "images": ["pink-women-hoodie1.jpeg", "pink-women-hoodie2.jpeg"],
+            "images": ["./images/dark-green-long-sleeves-shirt.jpg", "./images/dark-green-long-sleeves-shirt.jpg"],
             "rating": 4.8
         },
         {

@@ -10,6 +10,7 @@ import { CiCreditCard1 } from 'react-icons/ci';
 import { BsTruck } from 'react-icons/bs';
 import { TbExchange } from 'react-icons/tb';
 import SectionHeading from '../../components/Sections/SectionHeading/SectionHeading'
+import ProductCard from '../ProductListPage/ProductCard';
 
 const categories = content?.filter_categories;
 
@@ -34,14 +35,20 @@ const extraSections = [
 
 const ProductDetails = () => {
     const { product } = useLoaderData();
-    const [image, setImage] = useState(product?.images[0] ?? product?.thumbnail);
+    const [image, setImage] = useState();
     const [breadcrumbLinks, setBreadcrumbLinks] = useState([]);
+
+    const similarProducts = useMemo(() => {
+        return content?.products?.filter((item) => (item?.type_id === product?.type_id && item?.id !== product?.id));
+    }, [product]);
 
     const productCategory = useMemo(() => {
         return categories?.find((category) => category?.id === product?.category_id);
     }, []);
 
     useEffect(() => {
+        setImage(product?.images[0] ?? product?.thumbnail);
+
         setBreadcrumbLinks([]);
 
         const arrayLinks = [{title: 'Shop', path: '/'}, {
@@ -72,7 +79,7 @@ const ProductDetails = () => {
                                 {
                                     product?.images?.map((item, index) => (
                                         <button 
-                                        key={index}
+                                            key={index}
                                             className='p-1 rounded-md shadow-md border border-gray-200 hover:scale-105'
                                             onClick={() => setImage(item)}
                                         >
@@ -124,7 +131,7 @@ const ProductDetails = () => {
                         </button>
                     </div>
 
-                    <div className='w-full mt-8 grid lg:grid-cols-2 grid-cols-1 gap-4'>
+                    <div className='w-full mt-8 grid lg:grid-cols-2 grid-cols-1 gap-4 border-t pt-8'>
                         {
                             extraSections?.map((section) => (
                                 <div className='flex gap-4 justify-center items-center w-fit'>
@@ -140,10 +147,59 @@ const ProductDetails = () => {
             </div>
 
             {/* Product Description */}
-            <div className='px-10 pt-5 pb-10 md:w-[50%] w-full'>
-                <div>
+            <div className='px-10 pt-5 pb-10 flex justify-between gap-10'>
+                <div className='md:w-[50%] w-full'>
                     <SectionHeading title={'Product Description'} />
                     <p className='mx-10'>{product?.description}</p>
+                    <div className='mt-8 mx-10'>
+                        <table className='w-full'>
+                            <tr>
+                                <td className='p-5'>
+                                    <p className='text-gray-500'>Fabric</p>
+                                    <p>Bio-washable Cotton</p>
+                                </td>
+                                <td  className='p-5'>
+                                    <p className='text-gray-500'>Pattern</p>
+                                    <p>Plain</p>
+                                </td>
+                                <td  className='p-5'>
+                                    <p className='text-gray-500'>Fit</p>
+                                    <p>Regular-fit</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  className='p-5'>
+                                    <p className='text-gray-500'>Sleeves</p>
+                                    <p>Long-sleeves</p>
+                                </td>
+                                <td  className='p-5'>
+                                    <p className='text-gray-500'>Style</p>
+                                    <p>Casual Wear</p>
+                                </td>
+                                <td  className='p-5'>
+                                    {/* <p className='text-gray-500'>Fit</p>
+                                    <p>Regular-fit</p> */}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                {/* Video */}
+                <div className='md:w-[50%] w-full h-[400px] bg-slate-200'>
+                    
+                </div>
+            </div>
+
+            {/* Similar Products */}
+            <div className='px-10 pb-5'>
+                <SectionHeading title={'Similar Products'} />
+                <div className='py-5 px-10 flex flex-wrap gap-16'>
+                    {similarProducts?.map((item, index) => (
+                        // console.log(item)
+                        <ProductCard key={index} {...item} />
+                    ))}   
+                    {!similarProducts?.length && <p className='w-fit text-gray-500 text-lg'>No Products Found!</p>}                     
                 </div>
             </div>
         </div>
