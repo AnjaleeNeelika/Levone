@@ -18,6 +18,7 @@ import java.util.UUID;
 @Builder
 public class Product {
 
+    @Id
     @Column
     @GeneratedValue
     private UUID id;
@@ -56,13 +57,13 @@ public class Product {
     private CategoryType categoryType;
 
     @PrePersist
-    protected void onUpdate() {
-        updatedAt = new java.util.Date();
-    }
-
-    @PrePersist
     protected void onCreate() {
         createdAt = new java.util.Date();
         updatedAt = createdAt;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new java.util.Date();
     }
 }
