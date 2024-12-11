@@ -47,6 +47,14 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductVariant> productVariants;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "categoryType_id", nullable = false)
+    private CategoryType categoryType;
+
     @PrePersist
     protected void onUpdate() {
         updatedAt = new java.util.Date();
