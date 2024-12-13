@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -55,6 +56,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "categoryType_id", nullable = false)
     private CategoryType categoryType;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Resources> resources;
 
     @PrePersist
     protected void onCreate() {
