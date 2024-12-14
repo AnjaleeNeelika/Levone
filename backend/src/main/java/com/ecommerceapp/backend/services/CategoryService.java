@@ -19,11 +19,13 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    // GET CATEGORY BY ID
     public Category getCategory(UUID categoryId) {
         Optional<Category> category = categoryRepository.findById(categoryId);
         return category.orElse(null);
     }
 
+    // CREATE A NEW CATEGORY
     public Category createCategory(CategoryDto categoryDto) {
         Category category = mapToEntity(categoryDto);
         return categoryRepository.save(category);
@@ -53,5 +55,10 @@ public class CategoryService {
             categoryType.setCategory(category);
             return categoryType;
         }).collect(Collectors.toList());
+    }
+
+    // GET ALL CATEGORY TYPES
+    public List<Category> getAllCategory() {
+        return categoryRepository.findAll();
     }
 }
