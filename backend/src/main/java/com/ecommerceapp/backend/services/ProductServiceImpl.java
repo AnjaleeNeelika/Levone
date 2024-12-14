@@ -1,5 +1,6 @@
 package com.ecommerceapp.backend.services;
 
+import com.ecommerceapp.backend.dto.ProductDto;
 import com.ecommerceapp.backend.entities.Product;
 import com.ecommerceapp.backend.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public Product addProduct(Product product) {
+    public Product addProduct(ProductDto product) {
 
         return null;
     }
@@ -24,5 +25,16 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = productRepository.findAll();
         // Mapping products into productsDto
         return products;
+    }
+
+    private Product createProduct(ProductDto productDto) {
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setDescription(productDto.getDescription());
+        product.setBrand(productDto.getBrand());
+        product.setNewArrival(productDto.isNewArrival());
+        product.setPrice(productDto.getPrice());
+
+        return product;
     }
 }
