@@ -23,13 +23,14 @@ public class ProductController {
         this.productService = productService;
     }
 
+    // GET ALL PRODUCTS
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> productList = productService.getAllProducts();
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
-    // Create new product
+    // CREATE A NEW PRODUCT
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody ProductDto productDto) {
         Product product = productService.addProduct(productDto);
