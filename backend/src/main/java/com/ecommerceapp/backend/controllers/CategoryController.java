@@ -38,4 +38,17 @@ public class CategoryController {
         Category category = categoryService.createCategory(categoryDto);
         return new ResponseEntity<>(category, HttpStatus.CREATED);
     }
+
+    // UPDATE A CATEGORY
+    @PutMapping("/{id}")
+    public ResponseEntity<Category> updateCategory(@RequestBody CategoryDto categoryDto, @PathVariable(value = "id", required = true) UUID categoryId) {
+        Category updateCategory = categoryService.updateCategory(categoryDto, categoryId);
+        return new ResponseEntity<>(updateCategory, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable(value = "id", required = true) UUID categoryId) {
+        categoryService.deleteCategory(categoryId);
+        return ResponseEntity.ok().build();
+    }
 }
