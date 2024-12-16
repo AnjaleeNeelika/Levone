@@ -37,21 +37,31 @@ public class CategoryService {
                 .description(categoryDto.getDescription())
                 .build();
 
-        if(null != categoryDto.getCategoryTypeList()) {
+        if(categoryDto.getCategoryTypeList() != null) {
             List<CategoryType> categoryTypes = mapToCategoryTypesList(categoryDto.getCategoryTypeList(), category);
-            category.setCategoryTypes(categoryTypes);
+            category.setCategoryTypeList(categoryTypes);
         }
 
         return category;
     }
 
     private List<CategoryType> mapToCategoryTypesList(List<CategoryTypeDto> categoryTypeList, Category category) {
+//        return categoryTypeList.stream().map(categoryTypeDto -> {
+//            CategoryType categoryType = new CategoryType();
+//            categoryType.setCode(categoryTypeDto.getCode());
+//            categoryType.setName(categoryTypeDto.getName());
+//            categoryType.setDescription(categoryTypeDto.getDescription());
+//            categoryType.setCategory(category);
+//            return categoryType;
+//        }).collect(Collectors.toList());
+
         return categoryTypeList.stream().map(categoryTypeDto -> {
-            CategoryType categoryType = new CategoryType();
-            categoryType.setCode(categoryTypeDto.getCode());
-            categoryType.setName(categoryTypeDto.getName());
-            categoryType.setDescription(categoryTypeDto.getDescription());
-            categoryType.setCategory(category);
+            CategoryType categoryType = CategoryType.builder()
+                    .code(categoryTypeDto.getCode())
+                    .name(categoryTypeDto.getName())
+                    .description(categoryTypeDto.getDescription())
+                    .category(category)
+                    .build();
             return categoryType;
         }).collect(Collectors.toList());
     }
@@ -62,46 +72,26 @@ public class CategoryService {
     }
 
     // UPDATE CATEGORY DETAILS BY ID
-    public Category updateCategory(CategoryDto categoryDto, UUID categoryId) {
-        Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(()-> new ResourceNotFoundEx("Category not found with Id " + categoryDto.getId()));
+    public Category updateCategory(CategoryDto categoryDto) {
+        Category category = categoryRepository.findById(categoryDto.getId())
+                .orElseThrow(() -> new ResourceNotFoundEx("Category not found with Id " + categoryDto.getId()));
 
-        if(null != categoryDto.getName()) {
+        if (categoryDto.getName() != null) {
             category.setName(categoryDto.getName());
         }
 
-        if(null != categoryDto.getCode()) {
+        if (categoryDto.getCode() != null) {
             category.setCode(categoryDto.getCode());
         }
 
-        if(null != categoryDto.getDescription()) {
+        if (categoryDto.getDescription() != null) {
             category.setDescription(categoryDto.getDescription());
         }
 
-        List<CategoryType> existing = category.getCategoryTypes();
-        List<CategoryType> list = new ArrayList<>();
-
         if (categoryDto.getCategoryTypeList() != null) {
-            categoryDto.getCategoryTypeList().forEach(categoryTypeDto -> {
-                if (null != categoryTypeDto.getId()) {
-                    Optional<CategoryType> categoryType = existing.stream().filter(type -> type.getId().equals(categoryDto.getId())).findFirst();
-                    CategoryType categoryType1 = categoryType.get();
-                    categoryType1.setCode(categoryTypeDto.getCode());
-                    categoryType1.setName(categoryTypeDto.getName());
-                    categoryType1.setDescription(categoryTypeDto.getDescription());
-                    list.add(categoryType1);
-                 } else {
-                    CategoryType categoryType = new CategoryType();
-                    categoryType.setCode(categoryTypeDto.getCode());
-                    categoryType.setName(categoryTypeDto.getName());
-                    categoryType.setDescription(categoryTypeDto.getDescription());
-                    categoryType.setCategory(category);
-                    list.add(categoryType);
-                }
-            });
+            List<CategoryType> list = mapToCategoryTypesList(categoryDto.getCategoryTypeList(), category);
+            category.setCategoryTypeList(list);
         }
-
-        category.setCategoryTypes(list);
 
         return categoryRepository.save(category);
     }
