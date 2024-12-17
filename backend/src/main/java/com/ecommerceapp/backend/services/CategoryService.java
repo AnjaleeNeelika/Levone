@@ -19,13 +19,19 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
 
     // GET CATEGORY BY ID
-    public Category getCategory(UUID categoryId) {
+    public Category getCategoryById(UUID categoryId) {
         Optional<Category> category = categoryRepository.findById(categoryId);
         return category.orElse(null);
     }
 
     // CREATE A NEW CATEGORY
     public Category createCategory(CategoryDto categoryDto) {
+//        Optional<Category> existingCategory = categoryRepository.findByCodeOrName(categoryDto.getCode(), categoryDto.getName());
+//
+//        if (existingCategory.isPresent()) {
+//            throw new IllegalArgumentException("Category with the same code or name already exists.");
+//        }
+
         Category category = mapToEntity(categoryDto);
         return categoryRepository.save(category);
     }
@@ -73,6 +79,11 @@ public class CategoryService {
 
     // UPDATE CATEGORY DETAILS BY ID
     public Category updateCategory(CategoryDto categoryDto) {
+//        Optional<Category> existingCategory = categoryRepository.findByCodeOrName(categoryDto.getCode(), categoryDto.getName());
+//        if (existingCategory.isPresent() && !existingCategory.get().getId().equals(categoryDto.getId())) {
+//            throw new IllegalArgumentException("Category with the same code or name already exists.");
+//        }
+
         Category category = categoryRepository.findById(categoryDto.getId())
                 .orElseThrow(() -> new ResourceNotFoundEx("Category not found with Id " + categoryDto.getId()));
 
