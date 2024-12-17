@@ -21,7 +21,7 @@ public class CategoryController {
     // GET CATEGORY BY CATEGORY ID
     @GetMapping("/{id}")
     public ResponseEntity<Category> getCategoryById(@PathVariable(value = "id", required = true) UUID categoryId) {
-        Category category = categoryService.getCategory(categoryId);
+        Category category = categoryService.getCategoryById(categoryId);
         return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
