@@ -4,7 +4,9 @@ import com.ecommerceapp.backend.dto.ProductDto;
 import com.ecommerceapp.backend.dto.ProductResourceDto;
 import com.ecommerceapp.backend.entities.*;
 import com.ecommerceapp.backend.repositories.ProductRepository;
+import com.ecommerceapp.backend.specification.ProductSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,8 +29,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        List<Product> products = productRepository.findAll();
+    public List<Product> getAllProducts(UUID categoryId, UUID categoryTypeId) {
+        Specification<Product> productSpecification = Specification.where(null);
+
+        if (categoryId != null) {
+            productSpecification = productSpecification.and(ProductSpecification.hasCategoryId(categoryId));
+        }
+
+        if (categoryTypeId != null) {
+            productSpecification = productSpecification.and(ProductSpecification.hasCategoryTypeId(categoryTypeId));
+        }
+
+        List<Product> products = productRepository.findAll(productSpecification);
         // Mapping products into productsDto
         return products;
     }
