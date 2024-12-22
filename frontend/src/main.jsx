@@ -7,6 +7,8 @@ import ProductList from './assets/pages/ProductListPage/ProductList';
 import Wrapper from './assets/pages/Wrapper';
 import ProductDetails from './assets/pages/ProductDetailPage/ProductDetails';
 import loadProductById from './routes/products';
+import { Provider } from 'react-redux';
+import store from './assets/store/store';
 // import { router } from './routes.js'
 
 
@@ -41,10 +43,12 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={router}>
-        {/* <NavigationBar /> */}
-        <Wrapper />
-    </RouterProvider>
-  </StrictMode>,
+    // <StrictMode>
+        <Provider store={store}>
+            <RouterProvider router={router}>
+                {/* <NavigationBar /> */}
+                <Wrapper />
+            </RouterProvider>
+        </Provider>
+    // </StrictMode>,
 )

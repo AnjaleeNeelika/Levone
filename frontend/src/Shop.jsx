@@ -1,21 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import HeroSection from './assets/components/HeroSection/HeroSection'
 import NewArrivals from './assets/components/Sections/NewArrivals'
 import Category from './assets/components/Sections/Categories/Category'
 import content from './data/content.json'
 import Footer from './assets/components/Footer/Footer'
+import fetchCategories from './api/fetchCategories'
+import { useDispatch } from 'react-redux'
+import { loadCategories } from './assets/store/features/category'
 
 const Shop = () => {
-  return (
-    <div>
-        <HeroSection />
-        <NewArrivals />
-        {content?.categories && content?.categories?.map((item, index) =>
-            <Category key={item?.title + index} {...item}  />
-        )}
-        <Footer content={content?.footer} />
-    </div>
-  )
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        fetchCategories().then(res => {
+            dispatch(loadCategories(res));
+        }).catch(err => {
+            
+        })
+    }, []);
+
+    return (
+        <div>
+            <HeroSection />
+            <NewArrivals />
+            {content?.categories && content?.categories?.map((item, index) =>
+                <Category key={item?.title + index} {...item}  />
+            )}
+            <Footer content={content?.footer} />
+        </div>
+    )
 }
 
 export default Shop

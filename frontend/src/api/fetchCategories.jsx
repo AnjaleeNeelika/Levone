@@ -1,0 +1,37 @@
+// import axios from "axios";
+// import { API_BASE_URL, API_URLS } from "./constant"
+
+
+// export const fetchCategories = async() => {
+//     const url = API_BASE_URL + API_URLS.GET_CATEGORIES;
+
+//     try {
+//         const result = await axios(url, {
+//             method: 'GET'
+//         });
+
+//         return result?.data;
+//     } catch(e) {
+//         console.log(e);
+//     }
+// }
+
+import React from 'react'
+import axios from 'axios';
+import { API_BASE_URL, API_URLS } from './constant'
+
+const fetchCategories = async() => {
+    const url = `${API_BASE_URL}${API_URLS.GET_CATEGORIES}`;
+
+    try {
+        const result = await axios(url, {
+            method: 'GET'
+        });
+
+        return result?.data;
+    } catch(e) {
+        console.log(e);
+    }
+}
+
+export default fetchCategories
