@@ -7,18 +7,23 @@ import Footer from './assets/components/Footer/Footer'
 import fetchCategories from './api/fetchCategories'
 import { useDispatch } from 'react-redux'
 import { loadCategories } from './assets/store/features/category'
+import { setLoading } from './assets/store/features/common'
 
 const Shop = () => {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(setLoading(true));
+
         fetchCategories().then(res => {
             dispatch(loadCategories(res));
         }).catch(err => {
             
+        }).finally(() => {
+            dispatch(setLoading(false));
         })
-    }, []);
+    }, [dispatch]);
 
     return (
         <div>
