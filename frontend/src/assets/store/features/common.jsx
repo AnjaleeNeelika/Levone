@@ -5,7 +5,7 @@ export const initialState = {
 }
 
 export const commonSlice = createSlice({
-    name: 'CommonSlice',
+    name: 'commonSlice',
     initialState,
     reducers: {
         setLoading: (state, action) => {
