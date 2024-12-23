@@ -17,9 +17,9 @@ const SizeFilter = ({sizes, hideTitle}) => {
             {!hideTitle && <p className='text-[16px] uppercase text-black mt-5 font-semibold'>Size</p>}
 
             <div className="flex flex-wrap px-2 mt-2 gap-3">
-                {sizes?.map(item => {
+                {sizes?.map((item, index) => {
                     return (
-                        <div className="flex gap-2">
+                        <div key={index} className="flex gap-2">
                             <div 
                                 className="w-16 h-fit text-center gap-2 px-2 py-1 bg-white text-gray-500 border border-gray-500 rounded-lg shadow mb-1 cursor-pointer hover:outline-2 hover:scale-110 hover:bg-black hover:text-white"
                                 style={appliedSize.includes(item) ? {
