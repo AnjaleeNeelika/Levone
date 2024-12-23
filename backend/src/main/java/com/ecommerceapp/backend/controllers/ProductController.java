@@ -15,6 +15,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/product")
+@CrossOrigin
 public class ProductController {
 
     private ProductService productService;
@@ -26,8 +27,8 @@ public class ProductController {
 
     // GET ALL PRODUCTS
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts(@RequestParam(required = false)UUID categoryId, @RequestParam(required = false)UUID categoryTypeId) {
-        List<Product> productList = productService.getAllProducts(categoryId, categoryTypeId);
+    public ResponseEntity<List<ProductDto>> getAllProducts(@RequestParam(required = false)UUID categoryId, @RequestParam(required = false)UUID categoryTypeId) {
+        List<ProductDto> productList = productService.getAllProducts(categoryId, categoryTypeId);
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 

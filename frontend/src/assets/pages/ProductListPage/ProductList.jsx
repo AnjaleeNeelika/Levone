@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { HiOutlineAdjustments } from 'react-icons/hi'
 import content from '../../../data/content.json'
 import Categories from '../../components/Filters/Categories';
@@ -6,11 +6,17 @@ import PriceFilter from '../../components/Filters/PriceFilter';
 import ColorsFilter from '../../components/Filters/ColorsFilter';
 import SizeFilter from '../../components/Filters/SizeFilter';
 import ProductCard from './ProductCard';
+import { getAllProducts } from '../../../api/fetchProducts';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoading } from '../../store/features/common'
 
 
 const categories = content?.filter_categories;
 
 const ProductList = ({categoryType}) => {
+    const categoryData = useSelector((state) => state?.categoryState?.categories);
+    const dispatch = useDispatch();
+    const [products, setProducts] = useState([]);
 
     const categoryContent = useMemo(() => {
         return categories?.find((category) => category.code === categoryType);
@@ -18,7 +24,23 @@ const ProductList = ({categoryType}) => {
 
     const productListItems = useMemo(() => {
         return content?.products?.filter((product) => product?.category_id === categoryContent?.id);
-    }, [categoryContent]);    
+    }, [categoryContent]);  
+
+    const category = useMemo(() => {
+        return categoryData?.find(element => element?.code === categoryType);
+    }, [categoryData, categoryType]);
+    
+    useEffect(() => {
+        dispatch(setLoading(true));
+        getAllProducts(category?.id).then(res => {
+            setProducts(res);
+        }).catch(err => {
+
+        }).finally(() => {
+            dispatch(setLoading(false));
+        })
+    }, [category?.id, dispatch]);
+
 
     return (
         <div>
@@ -53,11 +75,11 @@ const ProductList = ({categoryType}) => {
 
                 <div className='p-14 w-full'>
                     {/* Products */}
-                    <p className='text-2xl'>{categoryContent?.description}</p>
+                    <p className='text-2xl'>{category?.description}</p>
                     <div className='p-5 flex flex-wrap gap-16'>
-                        {productListItems?.map((item, index) => (
+                        {products?.map((item, index) => (
                             // console.log(item)
-                            <ProductCard key={index} {...item} />
+                            <ProductCard key={item?.id+"_"+index} {...item} title={item?.name} />
                         ))}                        
                     </div>
                     

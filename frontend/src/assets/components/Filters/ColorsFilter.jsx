@@ -31,9 +31,9 @@ const ColorsFilter = ({colors}) => {
             <p className='text-[16px] uppercase text-black mt-5 font-semibold'>Colors</p>
 
             <div className="grid grid-cols-4 gap-4 mx-auto px-2 mt-2">
-                {colors?.map(item => {
+                {colors?.map((item, index) => {
                     return (
-                        <div className="flex flex-col items-center justify-center">
+                        <div key={index} className="flex flex-col items-center justify-center">
                             <div 
                                 className="w-8 h-8 border border-gray-200 rounded-lg shadow mb-1 cursor-pointer hover:outline-2 hover:scale-110" 
                                 style={{ background: `${colorSelector[item]}` }}
