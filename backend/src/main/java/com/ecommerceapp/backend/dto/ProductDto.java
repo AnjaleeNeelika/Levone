@@ -1,9 +1,6 @@
 package com.ecommerceapp.backend.dto;
 
-import com.ecommerceapp.backend.entities.Category;
-import com.ecommerceapp.backend.entities.CategoryType;
 import com.ecommerceapp.backend.entities.ProductVariant;
-import com.ecommerceapp.backend.entities.Resources;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +28,6 @@ public class ProductDto {
     private String categoryName;
     private UUID categoryTypeId;
     private String categoryTypeName;
-    private List<ProductVariant> variants;
+    private List<ProductVariantDto> variants;
     private List<ProductResourceDto> productResources;
 }

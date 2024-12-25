@@ -61,7 +61,7 @@ public class ProductMapper {
         }).collect(Collectors.toList());
     }
 
-    private List<ProductVariant> mapToProductVariant(List<ProductVariant> productVariantDtos, Product product) {
+    private List<ProductVariant> mapToProductVariant(List<ProductVariantDto> productVariantDtos, Product product) {
         return productVariantDtos.stream().map(productVariantDto -> {
             ProductVariant productVariant = new ProductVariant();
             productVariant.setColor(productVariantDto.getColor());
