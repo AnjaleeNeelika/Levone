@@ -36,6 +36,8 @@ public class ProductController {
         if (StringUtils.isNotBlank(slug)) {
             ProductDto productDto = productService.getProductBySlug(slug);
             productList.add(productDto);
+        } else {
+            productList = productService.getAllProducts(categoryId, categoryTypeId);
         }
 
         productList = productService.getAllProducts(categoryId, categoryTypeId);
