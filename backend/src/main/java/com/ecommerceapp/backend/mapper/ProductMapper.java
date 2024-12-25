@@ -94,7 +94,7 @@ public class ProductMapper {
         return resources.stream().filter(Resources::getIsPrimary).findFirst().orElse(null).getUrl();
     }
 
-    public List<ProductVariant> mapProductVariantListToDto(List<ProductVariant> productVariants) {
+    public List<ProductVariantDto> mapProductVariantListToDto(List<ProductVariant> productVariants) {
         return productVariants.stream().map(this::mapProductVariantDto).toList();
     }
 
