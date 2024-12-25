@@ -2,6 +2,7 @@ package com.ecommerceapp.backend.mapper;
 
 import com.ecommerceapp.backend.dto.ProductDto;
 import com.ecommerceapp.backend.dto.ProductResourceDto;
+import com.ecommerceapp.backend.dto.ProductVariantDto;
 import com.ecommerceapp.backend.entities.*;
 import com.ecommerceapp.backend.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +77,7 @@ public class ProductMapper {
         return products.stream().map(this::mapProductToDto).toList();
     }
 
-    private ProductDto mapProductToDto(Product product) {
+    public ProductDto mapProductToDto(Product product) {
         return ProductDto.builder()
                 .id(product.getId())
                 .brand(product.getBrand())
@@ -85,10 +86,38 @@ public class ProductMapper {
                 .isNewArrival(product.isNewArrival())
                 .rating(product.getRating())
                 .description(product.getDescription())
+                .slug(product.getSlug())
                 .thumbnail(getProductThumbnail(product.getResources())).build();
     }
 
     private String getProductThumbnail(List<Resources> resources) {
         return resources.stream().filter(Resources::getIsPrimary).findFirst().orElse(null).getUrl();
+    }
+
+    public List<ProductVariant> mapProductVariantListToDto(List<ProductVariant> productVariants) {
+        return productVariants.stream().map(this::mapProductVariantDto).toList();
+    }
+
+    private ProductVariantDto mapProductVariantDto(ProductVariant productVariant) {
+        return ProductVariantDto.builder()
+                .color(productVariant.getColor())
+                .id(productVariant.getId())
+                .size(productVariant.getSize())
+                .stockQuantity(productVariant.getStockQuantity())
+                .build();
+    }
+
+    public List<ProductResourceDto> mapProductResourcesListDto(List<Resources> resources) {
+        return resources.stream().map(this::mapResourcesToDto).toList();
+    }
+
+    private ProductResourceDto mapResourcesToDto(Resources resources) {
+        return ProductResourceDto.builder()
+                .id(resources.getId())
+                .url(resources.getUrl())
+                .name(resources.getName())
+                .type(resources.getType())
+                .isPrimary(resources.getIsPrimary())
+                .build();
     }
 }
