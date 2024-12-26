@@ -14,4 +14,6 @@ public interface ProductService {
     ProductDto getProductBySlug(String slug);
 
     ProductDto getProductById(UUID id);
+
+    Product updateProduct(ProductDto productDto);
 }

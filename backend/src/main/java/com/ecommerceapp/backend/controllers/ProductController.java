@@ -59,4 +59,11 @@ public class ProductController {
         Product product = productService.addProduct(productDto);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
+
+    // UPDATE AN EXISTING PRODUCT
+    @PutMapping
+    public ResponseEntity<Product> updateProduct(@RequestBody ProductDto productDto) {
+        Product product = productService.updateProduct(productDto);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
 }
