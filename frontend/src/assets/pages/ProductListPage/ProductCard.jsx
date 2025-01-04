@@ -2,11 +2,11 @@ import React from 'react'
 import { IoHeartOutline } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 
-const ProductCard = ({id, title, description, price, discount, rating, brand, thumbnail}) => {
+const ProductCard = ({id, title, description, price, discount, rating, brand, thumbnail, slug}) => {
     return (
         <div className='flex flex-col bg-white hover:scale-105 cursor-pointer w-fit h-fit relative'>
             <Link
-                to={`/product/${id}`}
+                to={`/product/${slug}`}
             >
                 <img src={thumbnail} alt={title} className='h-[320px] w-[280px] object-cover bg-center border-2 rounded-xl shadow-md' />
             </Link>

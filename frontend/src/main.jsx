@@ -6,9 +6,9 @@ import Shop from './Shop';
 import ProductList from './assets/pages/ProductListPage/ProductList';
 import Wrapper from './assets/pages/Wrapper';
 import ProductDetails from './assets/pages/ProductDetailPage/ProductDetails';
-import loadProductById from './routes/products';
 import { Provider } from 'react-redux';
 import store from './assets/store/store';
+import loadProductBySlug from './routes/products';
 // import { router } from './routes.js'
 
 
@@ -34,8 +34,8 @@ const router = createBrowserRouter([
                 element: <ProductList categoryType={'KIDS'} />,
             },
             {
-                path: "/product/:productId",
-                loader: loadProductById,
+                path: "/product/:slug",
+                loader: loadProductBySlug,
                 element: <ProductDetails />
             },
         ]

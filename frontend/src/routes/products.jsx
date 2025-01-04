@@ -1,9 +1,17 @@
-import content from '../data/content.json'
-import React from 'react'
+import store from '../assets/store/store';
+import { setLoading } from '../assets/store/features/common';
+import { getProductBySlug } from '../api/fetchProducts';
 
-const loadProductById = async ({params}) => {
-    const product = content?.products?.find((product)=> product?.id?.toString() === params?.productId?.toString());
-    return {product};
+const loadProductBySlug = async ({params}) => {
+    try {
+        store.dispatch(setLoading(true));
+        const product = await getProductBySlug(params?.slug);
+        store.dispatch(setLoading(false));
+
+        return {product};
+    } catch (err) {
+
+    }
 }
 
-export default loadProductById
+export default loadProductBySlug
