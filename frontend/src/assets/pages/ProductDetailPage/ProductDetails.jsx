@@ -11,8 +11,9 @@ import { BsTruck } from 'react-icons/bs';
 import { TbExchange } from 'react-icons/tb';
 import SectionHeading from '../../components/Sections/SectionHeading/SectionHeading'
 import ProductCard from '../ProductListPage/ProductCard';
+import { useDispatch, useSelector } from 'react-redux';
 
-const categories = content?.filter_categories;
+// const categories = content?.filter_categories;
 
 const extraSections = [
     {
@@ -37,35 +38,38 @@ const ProductDetails = () => {
     const { product } = useLoaderData();
     const [image, setImage] = useState();
     const [breadcrumbLinks, setBreadcrumbLinks] = useState([]);
+    const dispatch = useDispatch();
+    const cartItems = useSelector((state) => state.cartState?.cart);
+    const [similarProducts, setSimilarProducts] = useState([]);
+    const categories = useSelector((state) => state?.categoryState?.categories);
 
-    const similarProducts = useMemo(() => {
-        return content?.products?.filter((item) => (item?.type_id === product?.type_id && item?.id !== product?.id));
-    }, [product]);
 
     const productCategory = useMemo(() => {
         return categories?.find((category) => category?.id === product?.category_id);
-    }, []);
+    }, [product, categories]);
 
     useEffect(() => {
-        setImage(product?.images[0] ?? product?.thumbnail);
+        setImage(product?.thumbnail);
+        console.log(product);
 
         setBreadcrumbLinks([]);
 
         const arrayLinks = [{title: 'Shop', path: '/'}, {
             title: productCategory?.name,
-            path: productCategory?.path
+            path: productCategory?.name
         }];
 
-        const productType = productCategory?.types?.find((item) => item?.type_id === product?.type_id);
+        const productType = productCategory?.categoryTypes?.find((item) => item?.id === product?.categoryTypeId);
 
         if (productType) {
-            arrayLinks?.push({
-                title:productType?.name,
-                path: productType?.name
+            arrayLinks?.push ({
+                title: productType?.categoryName,
+                path: productType?.categoryTypeName
             })
         }
 
         setBreadcrumbLinks(arrayLinks)
+        console.log(breadcrumbLinks)
     }, [productCategory, product])
 
     return (
@@ -77,20 +81,20 @@ const ProductDetails = () => {
                         <div className='w-[100%] md:w-[20%] gap-20'>
                             <div className='h-full flex flex-row md:flex-col justify-center items-center gap-5'>
                                 {
-                                    product?.images?.map((item, index) => (
+                                    product?.productResources?.map((item, index) => (
                                         <button 
                                             key={index}
                                             className='p-1 rounded-md shadow-md border border-gray-200 hover:scale-105'
-                                            onClick={() => setImage(item)}
+                                            onClick={() => setImage(item?.url)}
                                         >
-                                            <img src={'../../'+item} alt={'sample-'+index} className='w-[64px] h-[64px] object-cover rounded-md' />
+                                            <img src={item?.url} alt={'sample-'+index} className='w-[64px] h-[64px] object-cover rounded-md' />
                                         </button>
                                     ))
                                 }
                             </div>
                         </div>
                         <div className='lg:w-[80%] w-[100%] mx-auto'>
-                            <img src={`../../` + image} alt={product?.title} className='h-full w-full max-h-[700px] object-cover bg-center border rounded shadow-md' />
+                            <img src={`../../` + image} alt={product?.name} className='h-full w-full max-h-[700px] object-cover bg-center border rounded shadow-md' />
                         </div>
                     </div>
                 </div>
@@ -99,7 +103,7 @@ const ProductDetails = () => {
                     <Breadcrumb links={breadcrumbLinks} />
 
                     <div className='mt-5'>
-                        <p className='text-3xl mb-3'>{product?.title}</p>
+                        <p className='text-3xl mb-3'>{product?.name}</p>
                         <Rating rating={product?.rating} />                    
                     </div>
 
