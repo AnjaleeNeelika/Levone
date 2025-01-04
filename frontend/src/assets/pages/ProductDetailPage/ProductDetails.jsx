@@ -12,6 +12,8 @@ import { TbExchange } from 'react-icons/tb';
 import SectionHeading from '../../components/Sections/SectionHeading/SectionHeading'
 import ProductCard from '../ProductListPage/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
+import _ from 'lodash';
+import { getAllProducts } from '../../../api/fetchProducts';
 
 // const categories = content?.filter_categories;
 
@@ -45,8 +47,19 @@ const ProductDetails = () => {
 
 
     const productCategory = useMemo(() => {
-        return categories?.find((category) => category?.id === product?.category_id);
+        return categories?.find((category) => category?.id === product?.categoryId);
     }, [product, categories]);
+
+    useEffect(() => {
+        getAllProducts(product?.categoryId, product?.categoryTypeId).then(res => {
+            const excludedProduct = res?.filter((item) => item?.id !== product?.id);
+            setSimilarProducts(excludedProduct);
+        }).catch(() => {
+
+        })
+    }, [product?.categoryId, product?.categoryTypeId, product?.id]);
+
+    // console.log(productCategory)
 
     useEffect(() => {
         setImage(product?.thumbnail);
@@ -54,23 +67,36 @@ const ProductDetails = () => {
 
         setBreadcrumbLinks([]);
 
-        const arrayLinks = [{title: 'Shop', path: '/'}, {
-            title: productCategory?.name,
-            path: productCategory?.name
-        }];
+        const arrayLinks = [{ title: 'Shop', path: '/' }, 
+            {
+                title: productCategory?.name,
+                path: productCategory?.name
+            }
+        ];
 
         const productType = productCategory?.categoryTypes?.find((item) => item?.id === product?.categoryTypeId);
+        console.log(productType);
 
         if (productType) {
             arrayLinks?.push ({
-                title: productType?.categoryName,
-                path: productType?.categoryTypeName
+                title: productType?.name,
+                path: productType?.name
             })
         }
 
-        setBreadcrumbLinks(arrayLinks)
-        console.log(breadcrumbLinks)
-    }, [productCategory, product])
+        setBreadcrumbLinks(arrayLinks);
+    }, [productCategory, product]);
+
+    const colors = useMemo(() => {
+        const colorSet = _.uniq(_.map(product?.variants, 'color'));
+        return colorSet
+    }, [product]);
+
+    const sizes = useMemo(() => {
+        const sizeSet = _.uniq(_.map(product?.variants, 'size'));
+        return sizeSet
+    }, [product]);
+
 
     return (
         <div>
@@ -120,12 +146,12 @@ const ProductDetails = () => {
                                 {'Size Guide ->'}
                             </Link>
                         </div>
-                        <SizeFilter sizes={product?.size} hideTitle />
+                        <SizeFilter sizes={sizes} hideTitle multi={false} />
                     </div>
 
                     <div className='mt-2'>
                         <p className='font-bold'>Colours Available</p>
-                        <ProductColors colors={product?.color} />
+                        <ProductColors colors={colors} />
                     </div>
 
                     <div className='flex mt-10'>
