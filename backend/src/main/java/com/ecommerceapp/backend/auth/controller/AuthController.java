@@ -5,6 +5,7 @@ import com.ecommerceapp.backend.auth.dto.RegistrationRequest;
 import com.ecommerceapp.backend.auth.dto.RegistrationResponse;
 import com.ecommerceapp.backend.auth.dto.UserToken;
 import com.ecommerceapp.backend.auth.entities.User;
+import com.ecommerceapp.backend.auth.repositories.UserDetailRepository;
 import com.ecommerceapp.backend.auth.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -27,6 +30,9 @@ public class AuthController {
 
     @Autowired
     RegistrationService registrationService;
+
+    @Autowired
+    UserDetailRepository userDetailRepository;
 
     @PostMapping("/login")
     public ResponseEntity<UserToken> login(@RequestBody LoginRequest loginRequest) {
@@ -59,6 +65,20 @@ public class AuthController {
     public ResponseEntity<RegistrationResponse> register(@RequestBody RegistrationRequest request) {
         RegistrationResponse registrationResponse = registrationService.createUser(request);
 
-        return null;
+        return new ResponseEntity<>(registrationResponse, registrationResponse.getCode() == 200 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/verify")
+    public ResponseEntity<?> verifyCode(@RequestBody Map<String, String > map) {
+        String userName = map.get("userName");
+        String code = map.get("code");
+
+        User user = userDetailRepository.loadUserByUsername(userName);
+        if (user != null && user.getVerificationCode().equals(code)) {
+            registrationService.verifyUser(userName);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
