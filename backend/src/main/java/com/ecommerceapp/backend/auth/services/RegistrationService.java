@@ -21,6 +21,9 @@ public class RegistrationService {
     @Autowired
     private AuthorityService authorityService;
 
+    @Autowired
+    private EmailService emailService;
+
     public RegistrationResponse createUser(RegistrationRequest request) {
         User existing = userDetailRepository.findByEmail(request.getEmail());
 
@@ -46,7 +49,9 @@ public class RegistrationService {
             user.setAuthorities(authorityService.getUserAuthority());
             userDetailRepository.save(user);
 
-            // Method to send the user verification email
+            // Calling method to send verification email
+            emailService.sendMail(user);
+
             return RegistrationResponse.builder()
                     .code(200)
                     .message("User created!")
