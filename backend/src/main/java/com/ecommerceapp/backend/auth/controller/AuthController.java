@@ -1,8 +1,11 @@
 package com.ecommerceapp.backend.auth.controller;
 
 import com.ecommerceapp.backend.auth.dto.LoginRequest;
+import com.ecommerceapp.backend.auth.dto.RegistrationRequest;
+import com.ecommerceapp.backend.auth.dto.RegistrationResponse;
 import com.ecommerceapp.backend.auth.dto.UserToken;
 import com.ecommerceapp.backend.auth.entities.User;
+import com.ecommerceapp.backend.auth.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +25,9 @@ public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @Autowired
+    RegistrationService registrationService;
+
     @PostMapping("/login")
     public ResponseEntity<UserToken> login(@RequestBody LoginRequest loginRequest) {
         try {
@@ -40,12 +46,19 @@ public class AuthController {
                 String token = null;
                 UserToken userToken = UserToken.builder().token(token).build();
 
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>(userToken, HttpStatus.OK);
             }
         } catch (BadCredentialsException e) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<RegistrationResponse> register(@RequestBody RegistrationRequest request) {
+        RegistrationResponse registrationResponse = registrationService.createUser(request);
+
+        return null;
     }
 }
