@@ -38,7 +38,7 @@ public class RegistrationService {
             User user = new User();
             user.setFirstName(request.getFirstName());
             user.setLastName(request.getLastName());
-            user.setLastName(request.getEmail());
+            user.setEmail(request.getEmail());
             user.setEnabled(false);
             user.setPassword(passwordEncoder.encode(request.getPassword()));
             user.setProvider("manual");
