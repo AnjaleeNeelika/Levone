@@ -14,6 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,7 @@ public class AuthController {
     RegistrationService registrationService;
 
     @Autowired
-    UserDetailRepository userDetailRepository;
+    UserDetailsService userDetailsService;
 
     @PostMapping("/login")
     public ResponseEntity<UserToken> login(@RequestBody LoginRequest loginRequest) {
@@ -73,7 +74,7 @@ public class AuthController {
         String userName = map.get("userName");
         String code = map.get("code");
 
-        User user = userDetailRepository.loadUserByUsername(userName);
+        User user = (User) userDetailsService.loadUserByUsername(userName);
         if (user != null && user.getVerificationCode().equals(code)) {
             registrationService.verifyUser(userName);
             return new ResponseEntity<>(HttpStatus.OK);
