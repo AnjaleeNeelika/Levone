@@ -31,11 +31,13 @@ public class EmailService {
             mailMessage.setTo(user.getEmail());
             mailMessage.setText(mailContent);
             mailMessage.setSubject(subject);
+
+            System.out.println("Sending email to: " + user.getEmail());
+
             javaMailSender.send(mailMessage);
+            return "Email Sent!";
         } catch (Exception e) {
             return "Error while sending the Email";
         }
-
-        return "Email Sent!";
     }
 }
