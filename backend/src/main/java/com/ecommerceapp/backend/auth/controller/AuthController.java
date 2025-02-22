@@ -1,5 +1,6 @@
 package com.ecommerceapp.backend.auth.controller;
 
+import com.ecommerceapp.backend.auth.config.JWTTokenHelper;
 import com.ecommerceapp.backend.auth.dto.LoginRequest;
 import com.ecommerceapp.backend.auth.dto.RegistrationRequest;
 import com.ecommerceapp.backend.auth.dto.RegistrationResponse;
@@ -35,6 +36,9 @@ public class AuthController {
     @Autowired
     UserDetailsService userDetailsService;
 
+    @Autowired
+    JWTTokenHelper jwtTokenHelper;
+
     @PostMapping("/login")
     public ResponseEntity<UserToken> login(@RequestBody LoginRequest loginRequest) {
         try {
@@ -50,7 +54,7 @@ public class AuthController {
                 }
 
                 // Generate JWT Token
-                String token = null;
+                String token = jwtTokenHelper.generateToken(user.getEmail());
                 UserToken userToken = UserToken.builder().token(token).build();
 
                 return new ResponseEntity<>(userToken, HttpStatus.OK);
