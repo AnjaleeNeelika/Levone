@@ -14,12 +14,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private JWTTokenHelper jwtTokenHelper;
 
     private final String[] publicApis = {
             "/api/auth/**"
@@ -31,7 +35,8 @@ public class WebSecurityConfig {
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/product", "/api/category").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
-                .anyRequest().authenticated());
+                .anyRequest().authenticated())
+                .addFilterBefore(new JWTAuthenticationFilter(jwtTokenHelper, userDetailsService), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
