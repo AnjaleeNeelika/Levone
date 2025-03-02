@@ -2,8 +2,12 @@ import React from 'react'
 import NavigationBar from '../components/Navigation/NavigationBar'
 import { Outlet } from 'react-router-dom'
 import BackgroundImg from '../images/shopping-4.jpg'
+import { useSelector } from 'react-redux'
+import Spinner from '../components/Spinner/Spinner'
 
 const AuthenticationWrapper = () => {
+    const isLoading = useSelector((state) => state?.commonState?.loading);
+
     return (
         <div className='h-[90vh]'>
             <NavigationBar variant="auth" />
@@ -18,6 +22,7 @@ const AuthenticationWrapper = () => {
             <div className='flex items-center justify-center w-full h-full'>
                 <Outlet />
             </div>
+            {isLoading && <Spinner />}
         </div>
     )
 }
