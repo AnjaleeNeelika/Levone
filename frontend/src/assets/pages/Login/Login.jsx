@@ -52,8 +52,8 @@ const Login = () => {
             {/* <div className='w-[60%] lg:w-[70%] hidden md:inline rounded-xl shadow-lg'> */}
                 <img src={BackgroundImg} alt="shopping_img" className='w-[50%] lg:w-[60%] hidden md:inline rounded-xl object-cover' />
             {/* </div> */}
-            <div className='flex sm:w-[40%] w-full items-center'>
-                <div className='w-[340px] py-4 px-6 mx-auto'>
+            <div className='lg:w-[40%] w-full flex items-center justify-center'>
+                <div className='w-full max-w-[320px] md:w-[320px] py-4 px-6 mx-auto'>
                     <p className='w-fit font-bold text-3xl mb-5'>Sign In</p>
                     <GoogleSignIn />
                     <p className='text-gray-500 items-center text-center w-full py-5'>OR</p>
@@ -67,6 +67,9 @@ const Login = () => {
                         </form>
                     </div>
                     {error && <p className='text-lg text-red-700'>{error}</p>}
+                    <div className='mt-2'>
+                        <Link className='mt-5 text-sm text-gray-500 underline hover:text-black'>Don't have an account? Sign up</Link>
+                    </div>
                 </div>
             </div>
         </div>

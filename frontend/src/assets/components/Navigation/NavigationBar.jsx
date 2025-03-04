@@ -14,16 +14,16 @@ const NavigationBar = ({ variant="default" }) => {
     };
 
     return (
-        <nav className='flex items-center py-6 px-16 justify-between gap-40 shadow-md'>
-            <div className='flex items-center gap-6'>
+        <nav className='flex items-center py-6 px-10 md:px-16 justify-between shadow-md w-full'>
+            <div className='w-fit flex items-center gap-6'>
                 {/* Logo */}
                 <a href='/' className='text-3xl text-black gap-8 font-bold'>Levone</a>
                 {/* <img src={Logo} className='h-14' /> */}
             </div>  
             { variant === "default" && 
-                <div className='flex flex-wrap items-center gap-10 flex-1'>
+                <div className='flex flex-wrap items-center gap-10'>
                     {/* Navigation Items */}                
-                    <ul className='flex gap-14 text-gray-500'>
+                    <ul className='flex gap-14 text-gray-500 w-fit'>
                         <NavLink 
                             to={{
                                 pathname: '/'
@@ -60,32 +60,35 @@ const NavigationBar = ({ variant="default" }) => {
                 </div>  
             }        
 
-            { variant === "default" && 
-                <div className='flex justify-center'>
-                    {/* Search Bar */}
-                    <div className='border rounded flex overflow-hidden'>
-                        <div className='flex items-center justify-center px-4 order-1 bg-gray-100'>
-                            <IoSearchOutline />
-                            <input type="text" name="" id="" className='px-4 py-2 outline-none bg-transparent' placeholder='Search' />
-                        </div>
-                    </div>
-                </div>
-            }
+            {/* { variant === "default" && 
+                
+            } */}
 
-            <div className='flex flex-wrap items-center gap-4'>
+            <div className='w-fit flex flex-wrap items-center gap-4'>
                 {/* Action items - icons */}
                 { variant === "default" &&
-                    <ul className='flex items-center gap-8'>
-                        <NavLink>
-                                <Wishlist />
-                        </NavLink>
-                        <NavLink>
-                                <AccountIcon />
-                        </NavLink>
-                        <NavLink>
-                                <CartIcon />
-                        </NavLink>
-                    </ul>
+                    <div className='flex gap-10'>
+                        <div className='w-fit flex justify-center'>
+                            {/* Search Bar */}
+                            <div className='border rounded flex overflow-hidden'>
+                                <div className='flex items-center justify-center px-4 order-1 bg-gray-100'>
+                                    <IoSearchOutline />
+                                    <input type="text" name="" id="" className='px-4 py-2 outline-none bg-transparent' placeholder='Search' />
+                                </div>
+                            </div>
+                        </div>
+                        <ul className='flex items-center gap-8'>
+                            <NavLink>
+                                    <Wishlist />
+                            </NavLink>
+                            <NavLink>
+                                    <AccountIcon />
+                            </NavLink>
+                            <NavLink>
+                                    <CartIcon />
+                            </NavLink>
+                        </ul>
+                    </div>
                 }
                 { variant === "auth" &&
                     <ul className='flex gap-8'>
