@@ -84,7 +84,10 @@ const NavigationBar = ({ variant="default" }) => {
                             <NavLink>
                                     <AccountIcon />
                             </NavLink>
-                            <NavLink>
+                            <NavLink
+                                to={'/add-to-cart'}
+                                className={({isActive}) => isActive ? 'bg-black p-2 text-white rounded-md' : ''}
+                            >
                                     <CartIcon />
                             </NavLink>
                         </ul>
