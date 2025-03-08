@@ -11,15 +11,42 @@ import content from '../../../data/content.json'
 const AddToCart = () => {
 
     const [breadcrumbLinks, setBreadcrumbLinks] = useState([]);
-    const [quantity, setQuantity] = useState(1);
+    // const [quantity, setQuantity] = useState(1);
 
-    const increment = () => {
-        setQuantity(quantity+1);
+    const [cartItems, setCartItems] = useState([
+        {
+            id: 1,
+            productImg: Img1, 
+            productName: 'Pink Hoodie',
+            color: 'Pink',
+            size: 'M',
+            price: 37.00,
+            quantity: 1,
+            shipping: 0.00,
+        },
+        {
+            id: 2,
+            productImg: Img2,
+            productName: 'Brown Valentina Saree',
+            color: 'Brown',
+            size: '-',
+            price: 30.00,
+            quantity: 1,
+            shipping: 2.00,
+        },
+    ]);
+
+    const increase = (id) => {
+        setCartItems(cartItems.map(item => 
+            item.id === id ? { ...item, quantity:item.quantity + 1 } : item
+        ))
     };
 
-    const decrement = () => {
+    const decrease = (id) => {
         if (quantity > 1) {
-            setQuantity(quantity-1);
+            setCartItems(cartItems.map(item => 
+                item.id === id ? { ...item, quantity:item.quantity - 1 } : item
+            ))
         }        
     };
 
@@ -43,84 +70,59 @@ const AddToCart = () => {
 
                 <div className='py-10 w-full'>
                     <table className='w-full'>
-                        <tr className='text-left uppercase'>
-                            <th className='w-1/3 p-5'>Product Details</th>
-                            <th className='w-1/6 p-5'>Price</th>
-                            <th className='w-1/6 p-5'>Quantity</th>
-                            <th className='w-1/6 p-5'>Shipping</th>
-                            <th className='w-1/6 p-5'>Subtotal</th>
-                            <th className='w-1/6 p-5'>Action</th>
-                        </tr>
+                        <thead>
+                            <tr className='text-left uppercase'>
+                                <th className='w-1/3 p-5'>Product Details</th>
+                                <th className='w-1/6 p-5'>Price</th>
+                                <th className='w-1/6 p-5'>Quantity</th>
+                                <th className='w-1/6 p-5'>Shipping</th>
+                                <th className='w-1/6 p-5'>Subtotal</th>
+                                <th className='w-1/6 p-5'>Action</th>
+                            </tr>
+                        </thead>
                         
-                        <tr className='text-gray-500 text-left border-b-2 border-gray-100'>
-                            <td className='p-5 flex gap-5'>
-                                <img src={Img1} alt="img_1" className='w-28 h-32 object-cover rounded-lg border border-gray-300' />
-                                <div className='mt-3'>
-                                    <p>Pink Hoodie</p>
-                                    <p className='text-gray-400 mt-3 text-sm'>Color: Pink</p>
-                                    <p className='text-gray-400 text-sm'>Size: M</p>
-                                </div>
-                            </td>
-                            <td className='p-5'>$37.00</td>
-                            <td className='p-5'>
-                                <div className='flex items-center bg-gray-100 rounded-lg w-fit'>
-                                    <button 
-                                        className='py-3 px-4 hover:bg-gray-200 rounded-l-lg'
-                                        onClick={decrement}
-                                    >
-                                        <IoRemove className='text-black' />
-                                    </button>
-                                    {/* <input type="number" name="quantity" id="" disabled className='w-28 py-2 border-x-2 border-gray-200 text-center bg-slate-200' placeholder={quantity} min={1} /> */}
-                                    <div className='w-20 px-6 border-x-2 border-gray-200 text-center'>{quantity}</div>
-                                    <button 
-                                        className='py-3 px-4 hover:bg-gray-200 rounded-r-lg'
-                                        onClick={increment}
-                                    >
-                                        <IoAdd className='text-black' />
-                                    </button>
-                                </div>
-                            </td>
-                            <td className='text-gray-400 p-5'>Free</td>
-                            <td className='p-5'>$37.00</td>
-                            <td className='p-5'>
-                                <RiDeleteBin5Line className='w-6 h-6 text-gray-500' />
-                            </td>
-                        </tr> 
-
-                        <tr className='text-gray-500 text-left border-b-2 border-gray-100'>
-                            <td className='p-5 flex gap-5'>
-                                <img src={Img2} alt="img_1" className='w-28 h-32 object-cover rounded-lg border border-gray-300' />
-                                <div className='mt-3'>
-                                    <p>Brown Valentina Saree</p>
-                                    <p className='text-gray-400 mt-3 text-sm'>Color: Brown</p>
-                                    <p className='text-gray-400 text-sm'>Size: -</p>
-                                </div>
-                            </td>
-                            <td className='p-5'>$30.00</td>
-                            <td className='p-5'>
-                                <div className='flex items-center bg-gray-100 rounded-lg w-fit'>
-                                    <button 
-                                        className='py-3 px-4 hover:bg-gray-200 rounded-l-lg'
-                                        onClick={decrement}
-                                    >
-                                        <IoRemove className='text-black' />
-                                    </button>
-                                    {/* <input type="number" name="quantity" id="" disabled className='w-28 py-2 border-x-2 border-gray-200 text-center bg-slate-200' placeholder={quantity} min={1} /> */}
-                                    <div className='w-20 px-6 border-x-2 border-gray-200 text-center'>{quantity}</div>
-                                    <button 
-                                        className='py-3 px-4 hover:bg-gray-200 rounded-r-lg'
-                                        onClick={increment}
-                                    >
-                                        <IoAdd className='text-black' />
-                                    </button>
-                                </div>
-                            </td>
-                            <td className='text-gray-400 p-5'>$2.00</td>
-                            <td className='p-5'>$30.00</td>
-                            <td className='p-5'>
-                                <RiDeleteBin5Line className='w-6 h-6 text-gray-500' />
-                            </td>
-                        </tr>                    
+                        <tbody>
+                            {cartItems.map((item) => 
+                                <tr key={item.id} className='text-gray-500 text-left border-b-2 border-gray-100'>
+                                    <td className='p-5 flex gap-5'>
+                                        <img src={item.productImg} alt="img_1" className='w-28 h-32 object-cover rounded-lg border border-gray-300' />
+                                        <div className='mt-3'>
+                                            <p>{item.productName}</p>
+                                            <p className='text-gray-400 mt-3 text-sm'>Color: {item.color}</p>
+                                            <p className='text-gray-400 text-sm'>Size: {item.size}</p>
+                                        </div>
+                                    </td>
+                                    <td className='p-5'>${item.price.toFixed(2)}</td>
+                                    <td className='p-5'>
+                                        <div className='flex items-center bg-gray-100 rounded-lg w-fit'>
+                                            <button 
+                                                className='py-3 px-4 hover:bg-gray-200 rounded-l-lg'
+                                                onClick={() => decrease(item.id)}
+                                            >
+                                                <IoRemove className='text-black' />
+                                            </button>
+                                            {/* <input type="number" name="quantity" id="" disabled className='w-28 py-2 border-x-2 border-gray-200 text-center bg-slate-200' placeholder={quantity} min={1} /> */}
+                                            <div className='w-20 px-6 border-x-2 border-gray-200 text-center'>{item.quantity}</div>
+                                            <button 
+                                                className='py-3 px-4 hover:bg-gray-200 rounded-r-lg'
+                                                onClick={() => increase(item.id)}
+                                            >
+                                                <IoAdd className='text-black' />
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td className='text-gray-400 p-5'>
+                                        {item.shipping === 0.00 ? 'Free' : `$${item.shipping.toFixed(2)}`}
+                                    </td>
+                                    <td className='p-5'>${(item.price * item.quantity).toFixed(2)}</td>
+                                    <td className='p-5'>
+                                        <button>
+                                            <RiDeleteBin5Line className='w-6 h-6 text-gray-500' />
+                                        </button>
+                                    </td>
+                                </tr> 
+                            )};
+                        </tbody>
                     </table>
                 </div>
 
