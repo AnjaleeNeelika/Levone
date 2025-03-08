@@ -87,6 +87,14 @@
                         "path": "/about-us"
                     },
                     {
+                        "label": "Blog",
+                        "path": "/blog"
+                    },
+                    {
+                        "label": "Collaboration",
+                        "path": "/collaboration"
+                    },
+                    {
                         "label": "Media",
                         "path": "/media"
                     }
@@ -106,6 +114,10 @@
                     {
                         "label": "Shipping Policy",
                         "path": "/policies"
+                    },
+                    {
+                        "label": "Sitemap",
+                        "path": "/sitemap"
                     }
                 ]
             },

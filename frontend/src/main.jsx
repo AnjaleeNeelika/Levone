@@ -12,6 +12,7 @@ import store from './assets/store/store';
 import loadProductBySlug from './routes/products';
 import Login from './assets/pages/Login/Login';
 import Signup from './assets/pages/Signup/Signup';
+import AddToCart from './assets/pages/Cart/AddToCart';
 // import { router } from './routes.js'
 
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
                 loader: loadProductBySlug,
                 element: <ProductDetails />
             },
+            {
+                path: '/add-to-cart',
+                element: <AddToCart />
+            }
         ]
     },
     {
