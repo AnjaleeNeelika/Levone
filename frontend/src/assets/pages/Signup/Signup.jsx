@@ -72,7 +72,7 @@ const Signup = () => {
                             <button className='border w-full rounded-lg p-3 bg-black text-white shadow-lg mt-10 hover:opacity-80 hover:-translate-y-1 transition-transform duration-200'>Sign UP</button>
                         </form>
                     </div>
-                    {error && <p className='text-lg text-red-700'>{error}</p>}
+                    {error && <p className='text-red-700'>{error}</p>}
                     <div className='mt-2'>
                         <Link 
                             to={'/v1/login'}
