@@ -13,6 +13,7 @@ import loadProductBySlug from './routes/products';
 import Login from './assets/pages/Login/Login';
 import Signup from './assets/pages/Signup/Signup';
 import AddToCart from './assets/pages/Cart/AddToCart';
+import ResetPassword from './assets/pages/ResetPassword.jsx/ResetPassword';
 // import { router } from './routes.js'
 
 
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
             {
                 path: "signup",
                 element: <Signup />
+            },
+            {
+                path: "reset-password",
+                element: <ResetPassword />
             }
         ]
     }

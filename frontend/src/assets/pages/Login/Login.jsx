@@ -62,7 +62,12 @@ const Login = () => {
                         <form onSubmit={onSubmit}>
                             <input type="email" name='userName' value={values?.userName} onChange={handleOnChange} placeholder='Email Address' className='w-full py-2 px-4 border border-gray-400 rounded-md text-gray-600 hover:border-black' required autoComplete />
                             <input type="password" name='password' value={values?.password} onChange={handleOnChange} placeholder='Password' className='w-full py-2 px-4 mt-5 border border-gray-400 rounded-md text-gray-600 hover:border-black' required autoComplete='new-password' />
-                            <Link className='text-right w-full float-right underline pt-2 text-sm text-gray-500 hover:text-black'>Forgot Password?</Link>
+                            <Link 
+                                to={'/v1/reset-password'}
+                                className='text-right w-full float-right underline pt-2 text-sm text-gray-500 hover:text-black'
+                            >
+                                Forgot Password?
+                            </Link>
                             <button className='border w-full rounded-lg p-3 bg-black text-white shadow-lg mt-10 hover:opacity-80 hover:-translate-y-1 transition-transform duration-200'>Sign In</button>
                         </form>
                     </div>
