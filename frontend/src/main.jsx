@@ -14,6 +14,7 @@ import Login from './assets/pages/Login/Login';
 import Signup from './assets/pages/Signup/Signup';
 import AddToCart from './assets/pages/Cart/AddToCart';
 import ResetPassword from './assets/pages/ResetPassword.jsx/ResetPassword';
+import OAuth2LoginCallback from './assets/pages/OAuth2LoginCallback';
 // import { router } from './routes.js'
 
 
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
                 element: <ResetPassword />
             }
         ]
+    },
+    {
+        path: '/oauth2/callback',
+        element: <OAuth2LoginCallback />
     }
 ]);
 
