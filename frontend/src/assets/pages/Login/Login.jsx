@@ -55,7 +55,7 @@ const Login = () => {
             <div className='lg:w-[40%] w-full flex items-center justify-center'>
                 <div className='w-full max-w-[320px] lg:w-[320px] py-4 px-6 mx-auto'>
                     <p className='w-fit font-bold text-3xl mb-5'>Sign In</p>
-                    <GoogleSignIn />
+                    {/* <GoogleSignIn /> */}
                     <p className='text-gray-500 items-center text-center w-full py-5'>OR</p>
 
                     <div>

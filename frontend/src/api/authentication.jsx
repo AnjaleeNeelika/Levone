@@ -38,3 +38,19 @@ export const registerAPI = async (body) => {
         throw new Error(err);
     }
 }
+
+export const verifyAPI = async (body) => {
+    const url = API_BASE_URL + '/api/auth/verify';
+
+    try {
+        const response = await axios(url, {
+            method: 'POST',
+            data: body
+        });
+
+        return response?.data;
+    }
+    catch(err) {
+        throw new Error(err);
+    }
+}
