@@ -56,7 +56,7 @@ const Signup = () => {
                         <>
                             <p className='w-fit font-bold text-3xl mb-5'>Sign UP</p>
                             {/* <GoogleSignIn /> */}
-                            <p className='text-gray-500 items-center text-center w-full py-5'>OR</p>
+                            {/* <p className='text-gray-500 items-center text-center w-full py-5'>OR</p> */}
 
                             <div>
                                 <form onSubmit={onSubmit} autoComplete='off'>
