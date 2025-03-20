@@ -32,7 +32,7 @@ public class Address {
     @Column(nullable = false)
     private String zipCode;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }

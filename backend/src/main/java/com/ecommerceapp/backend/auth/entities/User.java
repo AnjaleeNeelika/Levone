@@ -53,7 +53,7 @@ public class User implements UserDetails {
     private List<Authority> authorities;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private  List<Address> addressList;
+    private List<Address> addressList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

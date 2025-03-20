@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -26,7 +27,7 @@ public class Payment {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Data paymentDate;
+    private Date paymentDate;
 
     @Column(nullable = false)
     private Double amount;
